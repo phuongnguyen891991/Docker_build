@@ -1,0 +1,47 @@
+# openwrt-build-env
+
+OpenWrt build environment in docker.
+
+## Usage
+
+### Pull or build image
+
+- Pull image from docker hub.
+  
+  ```shell
+  docker pull p3terx/openwrt-build-env
+  ```
+
+- Build image.
+  
+  ```shell
+  docker build -t p3terx/openwrt-build-env github.com/P3TERX/openwrt-build-env
+  ```
+
+### Set the mount directory file permissions
+
+- Enter the `id` command to check UID and GID
+  
+  ```shell
+  $ id
+  uid=1001(p3terx) gid=1002(p3terx)
+  ```
+
+- Modify the UID and GID
+  
+  ```shell
+  docker exec openwrt-build-env sudo usermod -u 1001 user
+  docker exec openwrt-build-env sudo groupmod -g 1002 user
+  ```
+
+- Modify the file ownership
+  
+  ```shell
+  docker exec openwrt-build-env sudo chown -hR user:user .
+  ```
+
+- Restart container
+  
+  ```shell
+  docker restart openwrt-build-env
+  ```
